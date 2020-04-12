@@ -18,8 +18,8 @@ public class AuthService {
     public void signup(RegisterRequest registerRequest) {
         User user = new User();
         user.setUserName(registerRequest.getUsername());
-        user.setPassword(registerRequest.getPassword());
-        user.setEmail(encodePassword(registerRequest.getPassword()));
+        user.setEmail(registerRequest.getEmail());
+        user.setPassword(encodePassword(registerRequest.getPassword()));
 
         userRepository.save(user);
     }
