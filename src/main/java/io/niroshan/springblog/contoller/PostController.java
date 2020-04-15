@@ -11,22 +11,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/posts")
+@RequestMapping("/api/posts/")
 public class PostController {
 
     @Autowired
     private PostService postService;
 
-
     @PostMapping
-    public ResponseEntity createPost(@RequestBody PostDto postDto ){
+    public ResponseEntity createPost(@RequestBody PostDto postDto) {
         postService.createPost(postDto);
-        return new ResponseEntity (HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<PostDto>> showAllPosts() {
-        return new ResponseEntity<> (postService.showAllPosts(), HttpStatus.OK);
+        return new ResponseEntity<>(postService.showAllPosts(), HttpStatus.OK);
     }
 
     @GetMapping("/get/{id}")

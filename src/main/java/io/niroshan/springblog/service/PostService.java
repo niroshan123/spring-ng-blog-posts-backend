@@ -25,22 +25,27 @@ import static java.util.stream.Collectors.toList;
 public class PostService {
 
     @Autowired
-    AuthService authService;
-    @Autowired PostRepository postRepository;
+    private AuthService authService;
+    @Autowired
+    private PostRepository postRepository;
 
+    @Transactional
     public List<PostDto> showAllPosts() {
         List<Post> posts = postRepository.findAll();
         return posts.stream().map(this::mapFromPostToDto).collect(toList());
     }
 
-
+    @Transactional
     public void createPost(PostDto postDto) {
         Post post = mapFromDtoToPost(postDto);
         postRepository.save(post);
     }
 
-
-
+    @Transactional
+    public PostDto readSinglePost(Long id) {
+        Post post = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException("For id " + id));
+        return mapFromPostToDto(post);
+    }
 
     private PostDto mapFromPostToDto(Post post) {
         PostDto postDto = new PostDto();
@@ -61,10 +66,4 @@ public class PostService {
         post.setUpdatedOn(Instant.now());
         return post;
     }
-
-    public PostDto readSinglePost(Long id) {
-        Post post = postRepository.findById(id).orElseThrow(() -> new PostNotFoundException("For id " + id));
-        return mapFromPostToDto(post);
-    }
 }
-

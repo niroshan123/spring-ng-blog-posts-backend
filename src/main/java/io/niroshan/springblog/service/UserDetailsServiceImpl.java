@@ -33,3 +33,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return Collections.singletonList(new SimpleGrantedAuthority(role_user));
     }
 }
+
