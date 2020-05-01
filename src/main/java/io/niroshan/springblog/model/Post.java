@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.time.Instant;
-
+//<---Number 1--->
 @Entity
 @Table
 public class Post {
@@ -14,7 +14,8 @@ public class Post {
     @NotBlank
     @Column
     private String title;
-    @Lob
+    @Lob//@Lob annotation for our content field as it contains HTML code which may also include images@Lob
+        // annotation for our content field as it contains HTML code which may also include images
     @Column
     @NotEmpty
     private String content;

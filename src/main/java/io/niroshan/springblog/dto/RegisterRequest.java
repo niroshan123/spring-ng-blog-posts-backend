@@ -1,5 +1,6 @@
 package io.niroshan.springblog.dto;
 
+//<---Number 5--->
 public class RegisterRequest {
     private String username;
     private String email;

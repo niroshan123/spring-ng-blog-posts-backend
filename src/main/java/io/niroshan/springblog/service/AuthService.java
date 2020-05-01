@@ -27,6 +27,7 @@ public class AuthService {
     @Autowired
     private JwtProvider jwtProvider;
 
+    //<---Number 6--->
     public void signup(RegisterRequest registerRequest) {
         User user = new User();
         user.setUserName(registerRequest.getUsername());

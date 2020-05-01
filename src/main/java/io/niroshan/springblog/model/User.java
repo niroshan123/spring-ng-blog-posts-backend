@@ -2,6 +2,7 @@ package io.niroshan.springblog.model;
 
 import javax.persistence.*;
 
+//<---Number 2--->
 @Entity
 @Table
 public class User {

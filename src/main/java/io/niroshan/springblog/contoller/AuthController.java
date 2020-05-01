@@ -19,12 +19,14 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
+    //<---Number 4--->
     @PostMapping("/signup")
     public ResponseEntity signup(@RequestBody RegisterRequest registerRequest) {
         authService.signup(registerRequest);
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    //<---Number 8--->
     @PostMapping("/login")
     public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
         return authService.login(loginRequest);
