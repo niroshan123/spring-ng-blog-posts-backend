@@ -1,5 +1,6 @@
 package io.niroshan.springblog.dto;
 
+//<---Number 9--->
 public class LoginRequest {
     private String username;
     private String password;

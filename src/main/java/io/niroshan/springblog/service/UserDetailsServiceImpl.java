@@ -12,7 +12,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Collection;
 import java.util.Collections;
-
+//<---Number 12--->
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 

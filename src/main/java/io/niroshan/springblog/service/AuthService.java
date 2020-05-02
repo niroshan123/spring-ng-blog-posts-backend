@@ -23,7 +23,7 @@ public class AuthService {
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
-    private AuthenticationManager authenticationManager;
+    private AuthenticationManager authenticationManager;//15.1
     @Autowired
     private JwtProvider jwtProvider;
 
@@ -41,10 +41,14 @@ public class AuthService {
         return passwordEncoder.encode(password);
     }
 
+    //<---Number 10--->
     public AuthenticationResponse login(LoginRequest loginRequest) {
+
+        //<---Number 15.2--->
         Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
-                loginRequest.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authenticate);
+                loginRequest.getPassword()));//here we have authenticated our user
+        SecurityContextHolder.getContext().setAuthentication(authenticate);//making the return type of the authentication method
+        //<---Number 16.3--->
         String authenticationToken = jwtProvider.generateToken(authenticate);
         return new AuthenticationResponse(authenticationToken, loginRequest.getUsername());
     }

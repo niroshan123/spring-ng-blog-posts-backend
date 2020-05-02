@@ -18,11 +18,13 @@ import java.io.InputStream;
 import java.security.*;
 import java.security.cert.CertificateException;
 
+//<---Number 16 generating the token after authentication--->
 @Service
 public class JwtProvider {
 
     private KeyStore keyStore;
 
+    //<---Number 16.6--->
     @PostConstruct
     public void init() {
         try {
@@ -34,9 +36,10 @@ public class JwtProvider {
         }
 
     }
-
+    //<---Number 16.1--->
     public String generateToken(Authentication authentication) {
         User principal = (User) authentication.getPrincipal();
+        //<---Number 16.5--->
         return Jwts.builder()
                 .setSubject(principal.getUsername())
                 .signWith(getPrivateKey())
@@ -51,6 +54,7 @@ public class JwtProvider {
         }
     }
 
+    //<---Number 17.4--->
     public boolean validateToken(String jwt) {
         Jwts.parser().setSigningKey(getPublickey()).parseClaimsJws(jwt);
         return true;
@@ -64,6 +68,7 @@ public class JwtProvider {
         }
     }
 
+    //<---Number 17.5--->
     public String getUsernameFromJWT(String token) {
         Claims claims = Jwts.parser()
                 .setSigningKey(getPublickey())

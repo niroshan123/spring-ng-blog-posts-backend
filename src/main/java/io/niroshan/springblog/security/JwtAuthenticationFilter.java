@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+//<---Number 17--->
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -22,14 +23,15 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @Override
+    @Override//when ever we call an end pont this method is called//<---Number 17.1--->
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         String jwt = getJwtFromRequest(request);
 
+        //<---Number 17.3--->
         if(StringUtils.hasText(jwt) && jwtProvider.validateToken(jwt)){
             String username = jwtProvider.getUsernameFromJWT(jwt);
-
+//<---Number 17.6--->
             UserDetails userDetails = userDetailsService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails,
                     null, userDetails.getAuthorities());
@@ -40,6 +42,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
+    //<---Number 17.2--->
     private String getJwtFromRequest(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
 
